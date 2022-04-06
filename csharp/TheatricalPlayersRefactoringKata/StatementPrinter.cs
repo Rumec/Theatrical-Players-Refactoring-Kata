@@ -37,30 +37,30 @@ namespace TheatricalPlayersRefactoringKata
         private static int CalculateThisAmount(Play play, Performance perf)
         {
             int thisAmount;
-            switch (play.Type)
+            if (play.Type == "tragedy")
             {
-                case "tragedy":
-                    thisAmount = 40000;
-                    if (perf.Audience > 30)
-                    {
-                        thisAmount += 1000 * (perf.Audience - 30);
-                    }
+                thisAmount = 40000;
+                if (perf.Audience > 30)
+                {
+                    thisAmount += 1000 * (perf.Audience - 30);
+                }
 
-                    break;
-                case "comedy":
-                    thisAmount = 30000;
-                    if (perf.Audience > 20)
-                    {
-                        thisAmount += 10000 + 500 * (perf.Audience - 20);
-                    }
-
-                    thisAmount += 300 * perf.Audience;
-                    break;
-                default:
-                    throw new Exception("unknown type: " + play.Type);
+                return thisAmount;
             }
 
-            return thisAmount;
+            if (play.Type == "comedy")
+            {
+                thisAmount = 30000;
+                if (perf.Audience > 20)
+                {
+                    thisAmount += 10000 + 500 * (perf.Audience - 20);
+                }
+
+                thisAmount += 300 * perf.Audience;
+                return thisAmount;
+            }
+
+            throw new Exception("unknown type: " + play.Type);
         }
     }
 }
