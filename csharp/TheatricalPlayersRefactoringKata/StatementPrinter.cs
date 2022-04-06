@@ -13,15 +13,21 @@ namespace TheatricalPlayersRefactoringKata
             var result = $"Statement for {invoice.Customer}\n";
             var cultureInfo = new CultureInfo("en-US");
 
+            var performaceInfo = new List<PerformanceData>();
+
             foreach (var perf in invoice.Performances)
             {
                 var play = plays[perf.PlayID];
                 var thisAmount = CalculateThisAmount(play, perf);
 
+                /*
                 // print line for this order
                 result += string.Format(cultureInfo, "  {0}: {1:C} ({2} seats)\n", play.Name,
                     Convert.ToDecimal(thisAmount / 100), perf.Audience);
+                */
+                performaceInfo.Add(new PerformanceData(){Amount = Convert.ToDecimal(thisAmount / 100), Audience = perf.Audience, Name = play.Name });
                 totalAmount += thisAmount;
+                
             }
 
             result += string.Format(cultureInfo, "Amount owed is {0:C}\n", Convert.ToDecimal(totalAmount / 100));

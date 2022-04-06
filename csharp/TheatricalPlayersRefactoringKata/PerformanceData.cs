@@ -8,5 +8,8 @@ namespace TheatricalPlayersRefactoringKata
 {
     internal class PerformanceData
     {
+        public string Name { get; set; }
+        public decimal Amount { get; set; }
+        public int Audience { get; set; }
     }
 }
